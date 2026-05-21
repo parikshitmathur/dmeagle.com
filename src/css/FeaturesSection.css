@@ -1,0 +1,207 @@
+/* ======================================
+   CLEAN PREMIUM HYBRID BASE
+   ====================================== */
+.ultra-features-section {
+  width: 100%;
+  padding: 120px 6%;
+  background: radial-gradient(circle at top right, #f3f4f6, transparent 60%),
+              radial-gradient(circle at bottom left, #eff6ff, transparent 50%),
+              #f9fafb;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ======================================
+   HEADER STYLES
+   ====================================== */
+.features-header {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 70px auto;
+  position: relative;
+  z-index: 5;
+}
+
+.features-header h2 {
+  font-size: 42px;
+  color: #111827;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.features-header h2 span {
+  background: linear-gradient(90deg, #2563eb, #7c3aed, #db2777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.features-header p {
+  color: #4b5563;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* ======================================
+   PRO FLEXIBLE GRID (EQUAL HEIGHTS)
+   ====================================== */
+.features-flex-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px; /* Slight tight gap for seamless look like image */
+  position: relative;
+  z-index: 10;
+  align-items: stretch;
+}
+
+/* ======================================
+   EXACT IMAGE GLASSMORPHIC CARDS
+   ====================================== */
+.cyber-feature-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.45); /* Frosted glass core */
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  padding: 40px 24px 30px 24px;
+  border-radius: 16px; /* Smooth professional rounded edges */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Keeps content top and icons bottom */
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+/* Base Border Glow configuration using box-shadow tokens */
+.card-blue {
+  border: 2px solid rgba(59, 130, 246, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), inset 0 0 15px rgba(59, 130, 246, 0.1);
+}
+.card-purple {
+  border: 2px solid rgba(6, 182, 212, 0.4); /* Cyan/Light Blue border */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), inset 0 0 15px rgba(6, 182, 212, 0.1);
+}
+.card-amber {
+  border: 2px solid rgba(245, 158, 11, 0.4); /* Orange-Gold border */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), inset 0 0 15px rgba(245, 158, 11, 0.1);
+}
+.card-emerald {
+  border: 2px solid rgba(16, 185, 129, 0.4); /* Green border */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), inset 0 0 15px rgba(16, 185, 129, 0.1);
+}
+
+/* Premium Dynamic Neon Shine on Hover */
+.card-blue:hover { box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2), inset 0 0 20px rgba(59, 130, 246, 0.2); transform: translateY(-10px); background: rgba(255, 255, 255, 0.7); }
+.card-purple:hover { box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2), inset 0 0 20px rgba(6, 182, 212, 0.2); transform: translateY(-10px); background: rgba(255, 255, 255, 0.7); }
+.card-amber:hover { box-shadow: 0 20px 40px rgba(245, 158, 11, 0.2), inset 0 0 20px rgba(245, 158, 11, 0.2); transform: translateY(-10px); background: rgba(255, 255, 255, 0.7); }
+.card-emerald:hover { box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2), inset 0 0 20px rgba(16, 185, 129, 0.2); transform: translateY(-10px); background: rgba(255, 255, 255, 0.7); }
+
+/* Glare effect on top of the cards */
+.cyber-feature-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 50%;
+  background: linear-gradient(rgba(255,255,255,0.3), transparent);
+  pointer-events: none;
+}
+
+/* ======================================
+   CARD TEXTS & TYPOGRAPHY
+   ====================================== */
+.card-content-top {
+  margin-bottom: 25px;
+}
+
+.cyber-feature-card h3 {
+  color: #111827;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 14px;
+  text-align: center; /* Center text layout exactly like image */
+}
+
+.cyber-feature-card p {
+  color: #374151;
+  font-size: 13.5px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ======================================
+   BOTTOM CENTERED ICONS (AS REQUESTED)
+   ====================================== */
+.card-footer-assets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  gap: 15px;
+}
+
+.cyber-icon-wrapper {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  transition: transform 0.4s ease;
+}
+
+.cyber-feature-card:hover .cyber-icon-wrapper {
+  transform: scale(1.18);
+}
+
+/* Small aesthetic bottom star as seen in original screenshot */
+.card-star {
+  font-size: 14px;
+  color: #9ca3af;
+  opacity: 0.6;
+}
+
+/* ======================================
+   DELIBERATE ENTER SCROLL REVEAL
+   ====================================== */
+.animate-element {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.9s cubic-bezier(0.215, 0.61, 0.355, 1), 
+              transform 0.9s cubic-bezier(0.215, 0.61, 0.355, 1);
+  will-change: transform, opacity;
+}
+
+.section-revealed .animate-element {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-revealed .cyber-feature-card:nth-child(1) { transition-delay: 0.15s; }
+.section-revealed .cyber-feature-card:nth-child(2) { transition-delay: 0.3s; }
+.section-revealed .cyber-feature-card:nth-child(3) { transition-delay: 0.45s; }
+.section-revealed .cyber-feature-card:nth-child(4) { transition-delay: 0.6s; }
+
+/* ======================================
+   STRICT RESPONSIBILITY MEDIA OVERRIDES
+   ====================================== */
+@media (max-width: 1200px) {
+  .features-flex-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 24px; 
+  }
+  .features-header h2 { font-size: 36px; }
+}
+
+@media (max-width: 768px) {
+  .ultra-features-section { padding: 80px 4%; }
+  .features-header h2 { font-size: 28px; }
+  .features-flex-grid { 
+    grid-template-columns: 1fr; /* 1 Card per row on mobile—Zero crushing or squeezing */
+    gap: 24px; 
+  }
+  .cyber-feature-card { padding: 35px 20px; }
+}

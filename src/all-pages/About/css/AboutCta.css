@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.about-cta-section {
+  position: relative;
+  width: 100%;
+  padding: 85px 5%;
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #4338ca 100%); /* 👈 Premium Solid Royal Blue-Purple base */
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* =========================================================
+   BACKGROUND ABSTRACT CURVES (Screenshot Style)
+========================================================= */
+.about-cta-section::before {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+  bottom: -100px;
+  left: -100px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.about-cta-section::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  top: -80px;
+  right: -80px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Left side side soft fluid abstract curves layers */
+.cta-fluid-left {
+  position: absolute;
+  left: -50px;
+  top: 20%;
+  width: 180px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  pointer-events: none;
+}
+
+/* Right side soft fluid abstract curves layers */
+.cta-fluid-right {
+  position: absolute;
+  right: -40px;
+  bottom: 15%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+  pointer-events: none;
+}
+
+/* =========================================================
+   CONTENT FRAME BOX
+========================================================= */
+.about-cta-container {
+  position: relative;
+  z-index: 5;
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-cta-title {
+  color: #ffffff;
+  font-size: 42px; /* 👈 Clean, dominant standard font layout sizing */
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -1px;
+}
+
+.about-cta-desc {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15.5px;
+  line-height: 1.6;
+  margin-top: 20px;
+  max-width: 680px;
+}
+
+/* =========================================================
+   PREMIUM BUTTON DESIGN WITH MICROMOTION
+========================================================= */
+.about-cta-btn {
+  margin-top: 35px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: #024ebb; /* 👈 Exact screenshot dark ocean blue core background */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 15px 30px rgba(2, 78, 187, 0.3);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-cta-btn:hover {
+  transform: translateY(-4px);
+  background: #023fa0; /* 👈 Micro state darken shift on hover */
+  box-shadow: 0 20px 40px rgba(2, 78, 187, 0.45);
+}
+
+.cta-icon-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ffffff; /* 👈 Exact circular cutout circle arrow from snap */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #024ebb; /* Inner arrow matches core theme */
+  transition: transform 0.4s ease;
+}
+
+.about-cta-btn:hover .cta-icon-circle {
+  transform: scale(1.05) rotate(45deg);
+}
+
+/* =========================================================
+   STRICT RESPONSIIVE CONTROL ENGINE
+========================================================= */
+@media (max-width: 992px) {
+  .about-cta-section { padding: 70px 6%; }
+  .about-cta-title { font-size: 34px; }
+  .about-cta-desc { font-size: 14.5px; margin-top: 15px; }
+}
+
+@media (max-width: 580px) {
+  .about-cta-section { padding: 60px 4%; }
+  .about-cta-title { font-size: 26px; letter-spacing: -0.5px; }
+  .about-cta-desc { font-size: 13.5px; line-height: 1.5; }
+  .about-cta-btn { padding: 12px 24px; font-size: 14px; margin-top: 25px; }
+  .cta-icon-circle { width: 26px; height: 26px; }
+  .cta-fluid-left, .cta-fluid-right { display: none; } /* Clear screen overlays on tiny viewports */
+}

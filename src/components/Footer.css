@@ -1,0 +1,183 @@
+/* src/components/Footer.css */
+
+.refined-footer {
+  background-color: #ffffff;
+  color: #1e293b;
+  padding: 60px 5% 30px;
+  border-top: 1px solid #f1f5f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1fr 1.2fr;
+  gap: 30px;
+  margin-bottom: 40px;
+  align-items: start;
+}
+
+/* --- COLUMN HEADINGS --- */
+.footer-heading {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 22px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* --- COL 1: BRAND LOGO & SOCIALS --- */
+.footer-logo {
+  max-width: 140px;
+  height: auto;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.footer-intro {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 260px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-socials a {
+  width: 34px;
+  height: 34px;
+  background: #f1f5f9;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #00458b; /* Navy Blue from Logo */
+  transition: all 0.3s ease;
+}
+
+.footer-socials svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.footer-socials a:hover {
+  background: #00458b;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* --- COL 2: QUICK MENU --- */
+.footer-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-link-list li {
+  margin-bottom: 12px;
+}
+
+.footer-link-list a {
+  text-decoration: none;
+  color: #475569;
+  font-size: 14.5px;
+  font-weight: 500;
+  transition: color 0.2s, transform 0.2s;
+  display: inline-block;
+}
+
+.footer-link-list a:hover {
+  color: #00458b;
+  transform: translateX(4px);
+}
+
+/* --- COL 3: CONNECT US --- */
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.contact-item .icon-svg {
+  width: 16px;
+  height: 16px;
+  color: #00458b;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.contact-item a, .contact-item p {
+  text-decoration: none;
+  color: #475569;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.contact-item a:hover {
+  color: #00458b;
+}
+
+/* --- COL 4: FIND US (MAP) --- */
+.map-embed-wrapper {
+  width: 100%;
+  height: 160px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  border: 1px solid #e2e8f0;
+}
+
+/* --- BOTTOM BAR ROW --- */
+.footer-bottom {
+  padding-top: 25px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 13.5px;
+  color: #94a3b8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.credit-line {
+  color: #475569;
+  font-weight: 500;
+}
+
+.credit-line span {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 550px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+}

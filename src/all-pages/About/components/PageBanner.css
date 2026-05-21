@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.epic-banner {
+  position: relative;
+  width: 100%;
+  min-height: 380px; /* 👈 Height choti kar di */
+  padding: 100px 5% 70px; /* 👈 Padding compact kar di */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.22), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.20), transparent 40%),
+    linear-gradient(135deg, #050816, #0b1120, #111827);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* =========================================================
+   GRID OVERLAY
+   ========================================================= */
+.epic-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  pointer-events: none;
+}
+
+/* =========================================================
+   CONTENT WRAPPER
+   ========================================================= */
+.epic-banner-content {
+  position: relative;
+  z-index: 10;
+  max-width: 950px; /* 👈 Thoda tight narrow content container */
+}
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+.epic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px; /* 👈 Compact padding */
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #dbeafe;
+  font-size: 12px; /* 👈 Size chota kiya */
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 25px; /* 👈 Gap kam kiya */
+  animation: badgeFloat 4s ease-in-out infinite;
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 15px #22d3ee;
+}
+
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* =========================================================
+   CINEMATIC LETTER REVEAL SYSTEM
+   ========================================================= */
+.epic-banner-title {
+  font-size: 48px; /* 👈 Title size 68px se 48px kar diya ekdum standard aesthetic look ke liye */
+  line-height: 1.25;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -1px;
+  word-wrap: break-word;
+}
+
+.highlight-wrap {
+  display: inline-block;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Active Individual Letter Frame */
+.animated-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(60px) rotate(6deg) scale(0.8); /* 👈 Initial jump offset reduce kiya */
+  filter: blur(8px);
+  animation: cinematicReveal 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  will-change: transform, opacity, filter;
+}
+
+@keyframes cinematicReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) rotate(6deg) scale(0.8);
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.01);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.gradient-text .animated-letter {
+  text-shadow:
+    0 0 15px rgba(56, 189, 248, 0.3),
+    0 0 30px rgba(129, 140, 248, 0.2);
+}
+
+/* =========================================================
+   SUBTITLE & BREADCRUMB
+   ========================================================= */
+.epic-banner-subtitle {
+  max-width: 700px;
+  margin: 20px auto 0; /* 👈 Top margin kam kiya */
+  font-size: 15px; /* 👈 Subtitle size chota kiya */
+  line-height: 1.7;
+  color: #94a3b8;
+  font-weight: 400;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation-delay: 0.7s;
+}
+
+.epic-breadcrumb {
+  margin-top: 25px; /* 👈 Compact spacing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation-delay: 0.9s;
+}
+
+.epic-breadcrumb a {
+  color: #60a5fa;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.epic-breadcrumb a:hover {
+  color: #ffffff;
+}
+
+.epic-breadcrumb svg {
+  color: #475569;
+}
+
+.epic-breadcrumb span {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13.5px;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   AMBIENT BACKGROUND ORBS & RINGS
+   ========================================================= */
+.epic-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.epic-orb-1 {
+  width: 280px; /* 👈 Orb dimensions choti ki */
+  height: 280px;
+  background: #1e40af;
+  top: -80px;
+  left: -80px;
+  opacity: 0.2;
+  filter: blur(70px);
+  animation: moveOrb1 12s infinite alternate ease-in-out;
+}
+
+.epic-orb-2 {
+  width: 250px;
+  height: 250px;
+  background: #6b21a8;
+  bottom: -80px;
+  right: -60px;
+  opacity: 0.2;
+  filter: blur(70px);
+  animation: moveOrb2 10s infinite alternate ease-in-out;
+}
+
+.epic-orb-3 {
+  width: 130px;
+  height: 130px;
+  background: #0e7490;
+  top: 40%;
+  left: 4%;
+  opacity: 0.12;
+  filter: blur(50px);
+  animation: moveOrb3 8s infinite alternate ease-in-out;
+}
+
+@keyframes moveOrb1 { 100% { transform: translateY(40px) translateX(20px); } }
+@keyframes moveOrb2 { 100% { transform: translateY(-40px) translateX(-20px); } }
+@keyframes moveOrb3 { 100% { transform: translateX(40px) translateY(100%); } }
+
+.epic-ring {
+  position: absolute;
+  width: 550px; /* 👈 Ring size small kiya */
+  height: 550px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: rotateRing 30s linear infinite;
+}
+
+@keyframes rotateRing {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Floating Badges */
+.floating-icon {
+  position: absolute;
+  width: 45px; /* 👈 Mini glass box sizes */
+  height: 45px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #60a5fa;
+  pointer-events: none;
+}
+
+.floating-icon-1 { top: 22%; left: 6%; animation: floatIcon1 5s infinite ease-in-out; }
+.floating-icon-2 { right: 6%; bottom: 20%; animation: floatIcon1 6s infinite ease-in-out reverse; }
+
+@keyframes floatIcon1 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(6deg); }
+}
+
+/* =========================================================
+   STRICT BRAND RESPONSIVENESS OVERRIDES
+   ========================================================= */
+@media(max-width:992px){
+  .epic-banner { min-height: 320px; padding: 90px 5% 70px; }
+  .epic-banner-title { font-size: 36px; }
+  .epic-banner-subtitle { font-size: 14.5px; }
+}
+
+@media(max-width:768px) {
+  .epic-banner { min-height: 280px; padding: 80px 4% 60px; }
+  .epic-banner-title { font-size: 28px; }
+  .floating-icon, .epic-ring { display: none; }
+}
+
+@media(max-width:480px){
+  .epic-banner { min-height: 250px; padding: 75px 4% 55px; }
+  .epic-banner-title { font-size: 24px; }
+  .epic-badge { padding: 8px 14px; font-size: 10px; margin-bottom: 20px; }
+  .epic-banner-subtitle { font-size: 13px; }
+}

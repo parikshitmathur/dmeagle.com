@@ -1,0 +1,145 @@
+/* ======================================
+   TESTIMONIALS SECTION BASE (DARK THEME)
+   ====================================== */
+.ultra-testimonials-section {
+  width: 100%;
+  padding: 100px 6%;
+  background: radial-gradient(circle at top left, #1e1b4b, transparent 40%),
+              radial-gradient(circle at bottom right, #0f172a, transparent 50%),
+              #030712;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+.testimonials-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px auto;
+  position: relative;
+  z-index: 5;
+}
+
+.testimonials-header span.tag {
+  color: #6366f1;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.testimonials-header h2 {
+  font-size: 44px;
+  color: #ffffff;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+.testimonials-header h2 span {
+  background: linear-gradient(90deg, #60a5fa, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ======================================
+   SLIDER / GRID CONTAINER
+   ====================================== */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ======================================
+   PREMIUM GLASSMORPHIC TESTIMONIAL CARDS
+   ====================================== */
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 35px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  font-size: 80px;
+  color: rgba(99, 102, 241, 0.1);
+  font-family: serif;
+  line-height: 1;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+              0 0 25px rgba(99, 102, 241, 0.1);
+}
+
+.review-text {
+  color: #cbd5e1;
+  font-size: 14.5px;
+  line-height: 1.7;
+  margin-bottom: 25px;
+  font-style: italic;
+  position: relative;
+  z-index: 2;
+}
+
+/* Card Footer Design */
+.card-user-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 20px;
+}
+
+.user-details h4 {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.stars {
+  color: #fbbf24; /* Google Gold Star Color */
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.google-icon-brand img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.testimonial-card:hover .google-icon-brand img {
+  opacity: 1;
+}
+
+/* ======================================
+   RESPONSIVE LAYOUT
+   ====================================== */
+@media (max-width: 1024px) {
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .ultra-testimonials-section { padding: 80px 4%; }
+  .testimonials-header h2 { font-size: 32px; }
+  .testimonials-grid { grid-template-columns: 1fr; gap: 20px; }
+}

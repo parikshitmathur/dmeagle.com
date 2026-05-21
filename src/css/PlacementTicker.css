@@ -1,0 +1,124 @@
+  /* src/css/PlacementTicker.css */
+
+  .placement-container {
+    background: #ffffff;
+    padding: 40px 0;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    width: 100%;
+  }
+
+  .placement-title-box {
+    padding: 0 40px;
+    background: #ffffff;
+    z-index: 10;
+    box-shadow: 10px 0 20px #ffffff;
+    min-width: 220px;
+  }
+
+  .placement-title-box h4 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .placement-title-box p {
+    margin: 4px 0 0 0;
+    font-size: 11px;
+    color: #00458b;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* Marquee Track Master */
+  .marquee-wrapper {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+  }
+
+  /* Fade effects on edge lines */
+  .marquee-wrapper::before,
+  .marquee-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 80px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .marquee-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0));
+  }
+  .marquee-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0));
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 60px;
+    width: max-content;
+    animation: infiniteScroll 25s linear infinite;
+  }
+
+  /* Pause scroll when admin hovers to check */
+  .marquee-wrapper:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes infiniteScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .logo-card {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .logo-card img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(60%);
+    transition: all 0.3s ease;
+  }
+
+  /* Modern Hover Action: Asli corporate color bounce hoga */
+  .logo-card:hover img {
+    filter: grayscale(0%) opacity(100%);
+    transform: scale(1.08);
+  }
+
+  /* --- RESPONSIVE ADJUSTMENTS --- */
+  @media (max-width: 992px) {
+    .placement-container {
+      flex-direction: column;
+      gap: 25px;
+      text-align: center;
+      padding: 30px 0;
+    }
+    .placement-title-box {
+      padding: 0;
+      box-shadow: none;
+      min-width: auto;
+    }
+    .placement-title-box h4 { font-size: 14px; }
+    .marquee-wrapper::before, .marquee-wrapper::after { width: 40px; }
+    .marquee-track { gap: 40px; }
+  }

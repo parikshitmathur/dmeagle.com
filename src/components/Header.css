@@ -1,0 +1,140 @@
+/* src/components/Header.css */
+
+/* Navbar Wrapper - Isko floating banane ke liye */
+.navbar-wrapper {
+  position: fixed;
+  top: 25px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0 20px;
+  box-sizing: border-box;
+  transition: all 0.4s ease;
+}
+
+/* THE UNIQUE CAPSULE (ISLAND) DESIGN 
+  Ye screen se chipka nahi hoga, hawa me tairta hua lagega.
+*/
+.navbar-capsule {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 10px 20px 10px 25px;
+  border-radius: 60px; /* Fully rounded capsule */
+  width: 100%;
+  max-width: 1100px;
+  box-shadow: 0 15px 35px rgba(0, 59, 115, 0.1), 
+              inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  transition: all 0.4s ease;
+}
+
+/* Scroll hone par capsule thoda chota aur solid ho jayega */
+.navbar-wrapper.scrolled .navbar-capsule {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  max-width: 1000px;
+}
+
+/* --- LOGO IMAGE --- */
+.logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
+}
+
+/* --- MAGNETIC LINKS (Logo Colors: Navy & Black) --- */
+.nav-links {
+  display: flex;
+  gap: 5px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000000; /* Black from logo */
+  font-weight: 600;
+  font-size: 15px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Hover background pill matching the logo's Navy Blue */
+.nav-links a:hover {
+  color: #ffffff;
+  background-color: #00458b; /* Logo Navy Blue */
+  box-shadow: 0 4px 10px rgba(0, 69, 139, 0.3);
+}
+
+/* --- PREMIUM DOWNLOAD BUTTON --- */
+.download-btn {
+  background: #000000; /* Contrast black button */
+  color: white;
+  padding: 12px 28px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.4s ease;
+  border: 2px solid transparent;
+}
+
+.download-btn:hover {
+  background: #ffffff;
+  color: #00458b; /* Navy text on hover */
+  border: 2px solid #00458b;
+  transform: translateY(-2px);
+}
+
+/* Arrow Slide Animation */
+.btn-arrow {
+  transition: transform 0.3s ease;
+}
+.download-btn:hover .btn-arrow {
+  transform: translateX(4px) translateY(-4px);
+}
+
+/* --- MOBILE MENU --- */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.menu-toggle span {
+  width: 22px;
+  height: 2px;
+  background-color: #00458b;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 992px) {
+  .nav-links, .download-btn {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  .navbar-wrapper {
+    top: 15px;
+  }
+  .navbar-capsule {
+    padding: 12px 20px;
+  }
+}
