@@ -1,16 +1,16 @@
 import React from "react";
-import "../../css/AboutSection.css"; // 👈 Ek aur '../' lagaya
+import "../../css/AboutSection.css";
 
 function AboutSection() {
   return (
     <section className="ultra-about-section" id="about">
       
-      {/* Animated Futuristic Ambient Background Glows */}
+      {/* Animated Background Glows */}
       <div className="about-bg-circle circle-1"></div>
       <div className="about-bg-circle circle-2"></div>
       <div className="about-bg-circle circle-3"></div>
 
-      {/* LEFT SIDE: Image Composition with Luxury Floating Effects */}
+      {/* LEFT SIDE: Image Composition */}
       <div className="ultra-about-left">
         
         <div className="about-img about-img-main">
@@ -27,19 +27,18 @@ function AboutSection() {
           />
         </div>
 
-        {/* FLOATING GLASSMORPHISM EXPERIENCE CARD */}
+        {/* 5+ EXPERIENCE STRIP (FIXED POSITIONING) */}
         <div className="experience-card">
           <h2>5+</h2>
           <p>Years Of<br />Experience</p>
         </div>
 
-        {/* FLOATING NEON PARTICLES */}
+        {/* Floating Particles */}
         <div className="floating-shape shape-1"></div>
         <div className="floating-shape shape-2"></div>
-
       </div>
 
-      {/* RIGHT SIDE: Rich Content & High-Tech Features Grid */}
+      {/* RIGHT SIDE: Content & 4 Features Grid */}
       <div className="ultra-about-right">
         
         <span className="about-top-tag">
@@ -56,9 +55,8 @@ function AboutSection() {
           branding, affiliate marketing, and high-converting campaigns.
         </p>
 
-        {/* FEATURES GRID */}
+        {/* 4 FEATURES GRID */}
         <div className="ultra-features-grid">
-
           <div className="ultra-feature-card">
             <div className="feature-icon-box">🚀</div>
             <h3>Growth Strategy</h3>
@@ -82,7 +80,6 @@ function AboutSection() {
             <h3>Premium Support</h3>
             <p>Dedicated 24/7 expert developer and strategic partner support.</p>
           </div>
-
         </div>
 
         {/* ACTION BUTTONS */}
@@ -96,9 +93,8 @@ function AboutSection() {
         </div>
 
       </div>
-
     </section>
   );
 }
 
-export default AboutSection;    
+export default AboutSection;

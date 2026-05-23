@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.contact-core-section {
+  width: 100%;
+  padding: 80px 6%;
+  background: #ffffff; /* Clean base light profile overlay matching header background */
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  position: relative;
+}
+
+.contact-core-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr; /* 👈 Double column matrix locked */
+  gap: 60px;
+  align-items: stretch;
+}
+
+/* =========================================================
+   LEFT CONSOLE - INFORMATION GLOW CARDS
+   ========================================================= */
+.contact-info-workspace {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.contact-info-tag {
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 14px;
+}
+
+.contact-info-heading {
+  font-size: 38px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+
+.contact-info-sub {
+  font-size: 15px;
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+/* CARDS STACK TRACKS */
+.contact-meta-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-meta-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  border-radius: 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.info-meta-card:hover {
+  transform: translateX(6px);
+  border-color: rgba(37, 99, 235, 0.25);
+  box-shadow: 0 15px 30px rgba(15, 23, 42, 0.03);
+}
+
+.info-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.15);
+}
+
+.info-card-details h4 {
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.info-card-details p {
+  color: #475569;
+  font-size: 14.5px;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   RIGHT CONSOLE - SECURE INTERACTIVE WIDGET FORM
+   ========================================================= */
+.contact-form-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 26px;
+  padding: 40px;
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.04);
+}
+
+.contact-form-engine {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-input-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group-block label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-group-block input,
+.form-group-block textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 14.5px;
+  transition: all 0.3s ease;
+}
+
+.form-group-block input:focus,
+.form-group-block textarea:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+
+/* DYNAMIC SUBMIT CAPTURE ACTION BUTTON */
+.form-submit-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  background: #0f172a; /* Solid slate midnight look */
+  color: #ffffff;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.form-submit-btn:hover {
+  background: #2563eb; /* Color flips on clean logic focus */
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.25);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   ANTI-COLLAPSE RESPONSIVE BALANCER
+   ========================================================= */
+@media (max-width: 1024px) {
+  .contact-core-container { gap: 40px; }
+  .contact-info-heading { font-size: 32px; }
+  .contact-form-card { padding: 30px; }
+}
+
+@media (max-width: 920px) {
+  .contact-core-container { grid-template-columns: 1fr; gap: 50px; }
+  .contact-info-workspace { text-align: center; align-items: center; }
+  .contact-info-sub { max-width: 650px; }
+  .contact-meta-stack { width: 100%; max-width: 550px; margin: 0 auto; }
+  .info-meta-card { text-align: left; }
+}
+
+@media (max-width: 580px) {
+  .contact-core-section { padding: 50px 4%; }
+  .contact-info-heading { font-size: 26px; }
+  .form-input-row { grid-template-columns: 1fr; gap: 24px; }
+  .contact-form-card { padding: 24px; border-radius: 20px; }
+}

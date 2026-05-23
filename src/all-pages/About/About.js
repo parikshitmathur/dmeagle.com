@@ -2,11 +2,11 @@ import React from 'react';
 import PageBanner from './components/PageBanner';
 import AboutFeatures from './aboutFeatures'; 
 import AboutValue from './AboutValue'; 
-import AboutCta from './AboutCta'; 
+import AboutCta from './AboutCta'; // 👈 1. Naya CTA module import kiya
 
 function AboutPage() {
   return (
-    <div className="about-page-wrapper" style={{ background: '#ffffff', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="about-page-wrapper" style={{ background: '#ffffff', minHeight: '100vh' }}>
       
       {/* 1. TOP PREMIUM BANNER */}
       <PageBanner 
@@ -18,14 +18,11 @@ function AboutPage() {
       {/* 2. MIDDLE WHITE ULTRA FEATURE GRID */}
       <AboutFeatures />
 
-      {/* 3. LOWER MISSION & VISION STACK LAYER */}
+      {/* 3. LOWER MISSION & VISION STACK LAYER (SCROLL TIMED REVEALS) */}
       <AboutValue />
 
       {/* 4. SOLID BLUE DYNAMIC CALL TO ACTION BANNER */}
-      {/* 👈 Added safe relative wrapper layout padding taaki niche phail kar poora dikhe */}
-      <div style={{ width: '100%', relative: 'position', clear: 'both', marginTop: 'auto' }}>
-        <AboutCta />
-      </div>
+      <AboutCta /> {/* 👈 2. Yahan execute karwa diya! */}
 
     </div>
   );

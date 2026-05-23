@@ -1,13 +1,13 @@
 // src/all-pages/HeroSlider.js
 import React, { useState, useEffect } from 'react';
-import '../../css/HeroSlider.css'; //  Double '../../' zaroori hai!
+import '../../css/HeroSlider.css'; 
 
 function HeroSlider() {
   const [slides, setSlides] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  // Default Premium Core Data Engine (Fail-safe backup layout)
+  // Default Fallback Layout (Database offline hone par ye dikhega)
   const defaultSlides = [
     {
       id: 1,
@@ -28,36 +28,36 @@ function HeroSlider() {
   ];
 
   useEffect(() => {
-    /* =======================================================
-       // TODO: C# ASP.NET CORE REST API INTEGRATION
-       // Backend Core API live hone par niche se comment remove karein:
+    const getLiveSlides = async () => {
+      try {
+        // 🚀 STRICT HTTPS PORT INTEGRATION
+        const res = await fetch('https://localhost:7067/api/heroslider');
+        
+        if (!res.ok) {
+          throw new Error("Server ne error di");
+        }
+        
+        const data = await res.json();
+        console.log("🔥 DB SE AAYA DATA:", data); 
+        
+        if (data && data.length > 0) {
+          setSlides(data);
+        } else {
+          console.log("⚠️ Data khali mila, default slides set ho rahi hain.");
+          setSlides(defaultSlides);
+        }
+      } catch (err) {
+        console.error("❌ FETCH CRASH ERROR:", err); 
+        setSlides(defaultSlides);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-       fetch('https://localhost:XXXX/api/heroslider')
-         .then(res => {
-           if(!res.ok) throw new Error("ASP.NET Server Offline");
-           return res.json();
-         })
-         .then(data => {
-           if(data && data.length > 0) {
-             setSlides(data); // C# Database se aaya live data inject hoga
-           } else {
-             setSlides(defaultSlides); // Empty data pe safe fallback
-           }
-           setLoading(false);
-         })
-         .catch(err => {
-           console.log("Using Default Fallback Slides Data Layout Engine", err);
-           setSlides(defaultSlides); // API offline hone par dynamic layout crash nahi hoga
-           setLoading(false);
-         });
-       ======================================================= */
-
-    // Default system boot trigger (Right now runs on fallback mock objects)
-    setSlides(defaultSlides);
-    setLoading(false);
+    getLiveSlides();
   }, []);
 
-  // Automatic Slide Rotation Loop (6 Seconds interval)
+  // Automatic Loop Animation (6 Seconds)
   useEffect(() => {
     if (slides.length === 0) return;
     const interval = setInterval(() => {
@@ -66,44 +66,52 @@ function HeroSlider() {
     return () => clearInterval(interval);
   }, [slides]);
 
-  if (loading) return <div style={{ padding: '120px 8%', textAlign: 'center', color: '#00458b', fontWeight: '800', fontSize: '18px' }}>Loading Elite Experience...</div>;
+  if (loading) return <div className="slider-loading-state">Loading Elite Experience...</div>;
 
   return (
     <div className="hero-slider-container" id="home">
       <div className="slide-track">
-        {slides.map((slide, idx) => (
-          <div key={slide.id} className={`hero-slide ${idx === currentIdx ? 'active' : ''}`}>
-            
-            {/* LEFT COMPILER BLOCK */}
-            <div className="slide-content-left">
-              <span className="slide-tag">{slide.tag}</span>
-              <h1 className="slide-title" dangerouslySetInnerHTML={{ __html: slide.title }}></h1>
-              <p className="slide-desc">{slide.description}</p>
+        {slides.map((slide, idx) => {
+          // 🛠️ FAIL-SAFE MAPPING: C# Capitalization issues bypass handles
+          const tagValue = slide.tag || slide.Tag;
+          const titleValue = slide.title || slide.Title;
+          const descValue = slide.description || slide.Description;
+          const btnTextValue = slide.btnText || slide.BtnText;
+          const imageValue = slide.image || slide.Image || slide.imagePath || slide.ImagePath;
+
+          return (
+            <div key={slide.id || slide.Id || idx} className={`hero-slide ${idx === currentIdx ? 'active' : ''}`}>
               
-              <div className="slide-cta-box">
-                <a href="#contact" className="primary-cta">
-                  {slide.btnText} <span>↗</span>
-                </a>
-              </div>
-            </div>
-
-            {/* RIGHT GRAPHIC CORE DESK */}
-            <div className="slide-visual-right">
-              <div className="image-wrapper">
-                {/* Floating micro items matching client screenshot layers */}
-                <div className="floating-asset" style={{ top: '5%', left: '0px', animationDelay: '0s' }}>📢</div>
-                <div className="floating-asset" style={{ bottom: '15%', right: '-10px', animationDelay: '1.5s' }}>💡</div>
-                <div className="floating-asset" style={{ bottom: '5%', left: '20px', animationDelay: '0.7s', fontSize: '18px' }}>✨</div>
+              {/* LEFT TEXT BOX */}
+              <div className="slide-content-left">
+                <span className="slide-tag">{tagValue}</span>
+                <h1 className="slide-title" dangerouslySetInnerHTML={{ __html: titleValue }}></h1>
+                <p className="slide-desc">{descValue}</p>
                 
-                <img src={slide.image} alt="Eagle Marketing Interface" className="main-hero-img" />
+                <div className="slide-cta-box">
+                  <a href="#contact" className="primary-cta">
+                    {btnTextValue || 'Contact Now'} <span>↗</span>
+                  </a>
+                </div>
               </div>
-            </div>
 
-          </div>
-        ))}
+              {/* RIGHT IMAGE LAYER */}
+              <div className="slide-visual-right">
+                <div className="image-wrapper">
+                  <div className="floating-asset" style={{ top: '5%', left: '0px' }}>📢</div>
+                  <div className="floating-asset" style={{ bottom: '15%', right: '-10px' }}>💡</div>
+                  <div className="floating-asset" style={{ bottom: '5%', left: '20px', fontSize: '18px' }}>✨</div>
+                  
+                  <img src={imageValue} alt="Marketing Display Panel" className="main-hero-img" />
+                </div>
+              </div>
+
+            </div>
+          );
+        })}
       </div>
 
-      {/* MATRIX DOT INDEX LOGIC */}
+      {/* MATRIX DOT INDEX PIPES */}
       <div className="slider-dots">
         {slides.map((_, idx) => (
           <div 

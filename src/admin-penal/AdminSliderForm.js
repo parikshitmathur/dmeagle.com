@@ -19,54 +19,48 @@ function AdminSliderForm() {
     setSelectedFile(e.target.files[0]);
   };
 
-  const submitNewSlide = (e) => {
+const submitNewSlide = async (e) => {
     e.preventDefault();
     setStatus('Processing Admin Upload Request...');
 
-    // Multi-part data package structure for file streaming
+    if (!selectedFile) {
+      setStatus('⚠️ Error: Bhai, image file select karo!');
+      return;
+    }
+
     const formData = new FormData();
     formData.append('tag', slideForm.tag);
     formData.append('title', slideForm.title);
     formData.append('description', slideForm.description);
     formData.append('btnText', slideForm.btnText);
-    if (selectedFile) {
-      formData.append('imageFile', selectedFile); 
+    formData.append('imageFile', selectedFile);
+
+    try {
+      const response = await fetch('https://localhost:7067/api/heroslider/add', {
+        method: 'POST',
+        body: formData // No headers explicitly needed for FormData
+      });
+
+      if (response.ok) {
+        setStatus('✅ Success! Banner Published with Uploaded Image.');
+        alert("Boom! New slider banner published successfully to SQL Database!");
+        
+        // Form fields clear karo
+        setSlideForm({ tag: '', title: '', description: '', btnText: 'Contact Now' });
+        setSelectedFile(null);
+        
+        const fileInput = document.getElementById('admin-file-picker');
+        if (fileInput) fileInput.value = '';
+      } else {
+        // Agar response ok nahi hai, tabhi json ya text read karo
+        const errorText = await response.text();
+        setStatus(`❌ Failed: ${errorText || 'Server processed block with execution issues.'}`);
+      }
+    } catch (err) {
+      console.error("Network Exception:", err);
+      setStatus('❌ Network/CORS Issue. Check Console Logs.');
+      alert("Panga ho gaya! Ek baar inspect karke console error check karo.");
     }
-
-    /* =======================================================
-       // TODO: C# CORE API FOR FILE UPLOAD
-       // C# Controller me [FromForm] use karke data receive karna:
-
-       fetch('https://localhost:XXXX/api/heroslider/add', {
-         method: 'POST',
-         body: formData
-       })
-       .then(res => {
-         if(res.ok) {
-           setStatus('Success! Banner Published with Uploaded Image.');
-           setSlideForm({ tag: '', title: '', description: '', btnText: 'Contact Now' });
-           setSelectedFile(null);
-         } else {
-           setStatus('Database or File processing execution failed.');
-         }
-       })
-       .catch(err => {
-         console.error(err);
-         setStatus('Local Server Offline. Check ASP.NET Runtime.');
-       });
-       ======================================================= */
-
-    // Fallback Mock System till C# API comes live
-    setTimeout(() => {
-      alert(`Success! File "${selectedFile ? selectedFile.name : 'No file'}" parsed to FormData object.\nReady for C# API Endpoint mapping.`);
-      setStatus('Success (Mock Interface)!');
-      setSlideForm({ tag: '', title: '', description: '', btnText: 'Contact Now' });
-      setSelectedFile(null);
-      
-      // Reset file input value on DOM
-      const fileInput = document.getElementById('admin-file-picker');
-      if (fileInput) fileInput.value = '';
-    }, 1200);
   };
 
   return (

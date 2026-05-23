@@ -19,7 +19,7 @@ function PlacementTicker() {
     // =======================================================
     // ASP.NET CORE / NODE.JS CATCH API FOR PLACEMENT LOGOS
     // =======================================================
-    fetch('https://localhost:XXXX/api/placements')
+    fetch('https://localhost:7067/api/placements')
       .then(res => {
         if (!res.ok) throw new Error("API Offline or Endpoint breakdown");
         return res.json();

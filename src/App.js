@@ -9,8 +9,8 @@ import AdminSidebar from './admin-penal/components/AdminSidebar';
 
 // Pages aur Admin Panels
 import Home from './all-pages/Home/home';
-import AboutPage from './all-pages/About/About'; // 👈 Casing exact checked!
-// 🟢 FIXED: BlogPage ka missing import yahan se poora hata diya hai crash rokne ke liye!
+import AboutPage from './all-pages/About/About'; 
+import ContactPage from './all-pages/contact/Contact';// 👈 FIXED: Duplicate hataya aur disk ke matching small casing set ki!
 import AdminSliderForm from './admin-penal/AdminSliderForm';
 import AdminPlacementForm from './admin-penal/AdminPlacementForm'; 
 import TestimonialAdmin from './admin-penal/TestimonialAdmin';
@@ -38,7 +38,9 @@ function App() {
         // 2. PUBLIC PAGES ROUTING MATRIX
         // ==========================================
         if (hash === '#about' || path.includes('/about')) {
-          setCurrentRoute('about'); // 👈 URL me #about aate hi yeh activate hoga
+          setCurrentRoute('about'); 
+        } else if (hash === '#contact' || path.includes('/contact')) {
+          setCurrentRoute('contact'); // 👈 Activation point for contact page
         } else {
           setCurrentRoute('home');  // Default: Home Page
         }
@@ -127,8 +129,8 @@ function App() {
 
       {/* CORE DISPLAY STAGE */}
       <main style={{ flex: 1, paddingTop: '40px' }}>
-        {/* 🟢 FIXED: Ab sirf valid active modules hi screen pipeline par render honge */}
         {currentRoute === 'about' && <AboutPage />}
+        {currentRoute === 'contact' && <ContactPage />} 
         {currentRoute === 'home' && <Home />}
       </main>
 
