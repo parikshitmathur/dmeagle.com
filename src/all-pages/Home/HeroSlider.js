@@ -1,4 +1,3 @@
-// src/all-pages/HeroSlider.js
 import React, { useState, useEffect } from 'react';
 import '../../css/HeroSlider.css'; 
 
@@ -7,7 +6,7 @@ function HeroSlider() {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  // Default Fallback Layout (Database offline hone par ye dikhega)
+  // Default Fallback Layout (Database offline ya khali hone par ye dikhega)
   const defaultSlides = [
     {
       id: 1,
@@ -30,15 +29,15 @@ function HeroSlider() {
   useEffect(() => {
     const getLiveSlides = async () => {
       try {
-        // 🚀 STRICT HTTPS PORT INTEGRATION
-        const res = await fetch('https://localhost:7067/api/heroslider');
+        // 🚀 REAL LIVE API GET REQUEST (Localhost hata kar tumhara live server domain laga diya)
+        const res = await fetch('https://dmeagleapi.blsonicollege.in/api/heroslider');
         
         if (!res.ok) {
           throw new Error("Server ne error di");
         }
         
         const data = await res.json();
-        console.log("🔥 DB SE AAYA DATA:", data); 
+        console.log("🔥 LIVE DB SE AAYA DATA:", data); 
         
         if (data && data.length > 0) {
           setSlides(data);
@@ -48,7 +47,7 @@ function HeroSlider() {
         }
       } catch (err) {
         console.error("❌ FETCH CRASH ERROR:", err); 
-        setSlides(defaultSlides);
+        setSlides(defaultSlides); // Server down ho toh fallback layout dikhega
       } finally {
         setLoading(false);
       }
@@ -72,7 +71,7 @@ function HeroSlider() {
     <div className="hero-slider-container" id="home">
       <div className="slide-track">
         {slides.map((slide, idx) => {
-          // 🛠️ FAIL-SAFE MAPPING: C# Capitalization issues bypass handles
+          // 🛠 *FAIL-SAFE MAPPING: C# Capitalization issue handles*
           const tagValue = slide.tag || slide.Tag;
           const titleValue = slide.title || slide.Title;
           const descValue = slide.description || slide.Description;

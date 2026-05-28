@@ -1,12 +1,10 @@
-// src/all-pages/PlacementTicker.js
 import React, { useState, useEffect } from 'react';
-import "../../css/PlacementTicker.css"; // 👈 Ek aur '../' lagaya
+import "../../css/PlacementTicker.css"; 
 
 function PlacementTicker() {
   const [logos, setLogos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Default hardcoded logos fallback jab admin pane empty ho
   const defaultLogos = [
     { id: 1, name: 'Flipkart', url: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Flipkart_logo.svg' },
     { id: 2, name: 'Fiverr', url: 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Fiverr_logo.svg' },
@@ -16,57 +14,71 @@ function PlacementTicker() {
   ];
 
   useEffect(() => {
-    // =======================================================
-    // ASP.NET CORE / NODE.JS CATCH API FOR PLACEMENT LOGOS
-    // =======================================================
-    fetch('https://localhost:7067/api/placements')
+    fetch('https://dmeagleapi.blsonicollege.in/api/Clients')
       .then(res => {
-        if (!res.ok) throw new Error("API Offline or Endpoint breakdown");
+        if (!res.ok) throw new Error("API Offline");
         return res.json();
       })
       .then(data => {
-        // Agar admin ne database me EK BHI logo dala hai, toh sirf wahi dikhega (defaults hat jayenge)
         if (data && data.length > 0) {
-          setLogos(data);
+          const activeLogos = data.filter(logo => {
+            return logo.isActive !== undefined ? logo.isActive : (logo.IsActive !== undefined ? logo.IsActive : true);
+          });
+          setLogos(activeLogos);
         } else {
-          // Agar database empty hai (length === 0), toh default show hoga
-          setLogos(defaultLogos);
+          setLogos([]); 
         }
         setLoading(false);
       })
       .catch(err => {
-        console.log("Using Failsafe Marquee fallbacks on Server Down:", err);
-        // Server crash hone par user ko empty screen na dikhe, isliye backup
-        setLogos(defaultLogos);
+        console.log("Marquee fetch breakdown:", err);
+        setLogos([]);
         setLoading(false);
       });
-
-    // NOTE: Agar abhi live checking bina API ke karni hai, toh upar wale pure 
-    // fetch block ko temporarily comment out karke niche is line ko rehne dena.
-    // setLogos(defaultLogos);
-    // setLoading(false);
   }, []);
 
   if (loading) return null;
+  if (logos.length === 0) return null; 
 
-  // Infinite smooth scroll loop logic backup multiplier
-  const doubleLogos = [...logos, ...logos, ...logos];
+  const isMarqueeNeeded = logos.length >= 4;
+  const displayLogos = isMarqueeNeeded ? [...logos, ...logos, ...logos, ...logos] : logos;
 
   return (
     <div className="placement-container">
+      {/* LEFT STATIC BADGE HEADER */}
       <div className="placement-title-box">
-        <h4>Placement</h4>
-        <h4 style={{ color: '#00458b' }}>Opportunities</h4>
-        <p>OUR ALUMNI WORK HERE</p>
+        <span className="corporate-badge">Our Alumni Network</span>
+        <h4>Placement <span>Opportunities</span></h4>
+        <p>EAGLES ARE HIRED HERE</p>
       </div>
 
+      {/* RIGHT MARQUEE SYSTEM */}
       <div className="marquee-wrapper">
-        <div className="marquee-track">
-          {doubleLogos.map((logo, index) => (
-            <div key={`${logo.id}-${index}`} className="logo-card">
-              <img src={logo.url} alt={`${logo.name} Network`} />
-            </div>
-          ))}
+        <div className={isMarqueeNeeded ? "marquee-track" : "static-track-centered"}>
+          {displayLogos.map((logo, index) => {
+            const idValue = logo.id || logo.Id || index;
+            const nameValue = logo.name || logo.Name || logo.companyName || logo.CompanyName || 'Partner';
+            
+            const urlValue = logo.url || logo.Url || 
+                             logo.image || logo.Image || 
+                             logo.logo || logo.Logo || 
+                             logo.logoUrl || logo.LogoUrl || 
+                             logo.imagePath || logo.ImagePath || 
+                             logo.path || logo.Path;
+
+            if (!urlValue) return null;
+
+            return (
+              // 🚀 BOX REMOVED: Ab ye bina box ke raw style render hoga
+              <div key={`${idValue}-${index}`} className="logo-raw-item">
+                <img 
+                  src={urlValue} 
+                  alt={`${nameValue} Corporate`} 
+                  onError={(e) => { e.target.style.display = 'none'; }} 
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -1,44 +1,46 @@
 import React, { useState, useEffect } from "react";
-import "../../css/Testimonials.css"; // 👈 Ek aur '../' lagaya
+import "../../css/Testimonials.css"; 
 
 function Testimonials() {
-  // 1. Local State for Testimonials (Fallback / Mock Data)
-  const [reviews, setReviews] = useState([
-    {
-      id: 1,
-      name: "Durgesh Sharma",
-      text: "One of the best digital marketing institute covered each & every topic. Staff with bulk of knowledge & experienced faculties. Flexible batches. Provides 100% placement assistance. Wonderful learning experience.",
-      stars: 5,
-    },
-    {
-      id: 2,
-      name: "Kusum Sharma",
-      text: "Digital Marketing Eagle One of the leading and outstanding platforms for learning. It helped me to learn all the modules and aspects properly with deep insights. I would definitely recommend this institute.",
-      stars: 5,
-    },
-    {
-      id: 3,
-      name: "Rahul Mathur",
-      text: "Excellent practical exposure on live ads management and SEO. The trainers are supportive, and the course structure is extremely industry-oriented.",
-      stars: 5,
-    }
-  ]);
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // 2. BACKEND API INTEGRATION PLACEHOLDER
+  // Default fallback data agar server queue down ho
+  const defaultReviews = [
+    { id: 1, name: "Durgesh Sharma", post: "Digital Marketing Graduate", description: "One of the best digital marketing institute covered each & every topic. Provides 100% placement assistance." },
+    { id: 2, name: "Kusum Sharma", post: "SEO Professional Student", description: "Digital Marketing Eagle One of the leading and outstanding platforms for learning. It helped me learn with deep insights." },
+    { id: 3, name: "Rahul Mathur", post: "Live Ads Specialist", description: "Excellent practical exposure on live ads management and SEO. The trainers are supportive, and course is industry-oriented." }
+  ];
+
   useEffect(() => {
-    /* const fetchReviews = async () => {
+    const fetchReviews = async () => {
       try {
-        const response = await fetch("https://your-api-domain.com/api/testimonials");
-        const data = await response.json();
-        // Sirf approved reviews ko state me save karein
-        setReviews(data.filter(review => review.approved === true));
+        const response = await fetch("https://dmeagleapi.blsonicollege.in/api/Testimonial");
+        if (response.ok) {
+          const data = await response.json();
+          
+          // 🔥 EXTRA CRITICAL FILTER: Screen pe sirf wahi dikhao jo admin pane se Live (Approved) hain!
+          const approvedReviews = data.filter(review => {
+            const isApproved = review.approved !== undefined ? review.approved : (review.Approved !== undefined ? review.Approved : true);
+            return isApproved === true;
+          });
+
+          setReviews(approvedReviews.length > 0 ? approvedReviews : defaultReviews);
+        } else {
+          setReviews(defaultReviews);
+        }
       } catch (error) {
         console.error("Error fetching testimonials from server:", error);
+        setReviews(defaultReviews);
+      } finally {
+        setLoading(false);
       }
     };
+    
     fetchReviews();
-    */
   }, []);
+
+  if (loading) return null;
 
   return (
     <section className="ultra-testimonials-section" id="testimonials">
@@ -49,26 +51,34 @@ function Testimonials() {
       </div>
 
       <div className="testimonials-grid">
-        {reviews.map((review) => (
-          <div className="testimonial-card" key={review.id}>
-            <p className="review-text">"{review.text}"</p>
-            
-            <div className="card-user-info">
-              <div className="user-details">
-                <h4>{review.name}</h4>
-                <div className="stars">
-                  {"★".repeat(review.stars)}{"☆".repeat(5 - review.stars)}
+        {reviews.map((review) => {
+          const id = review.id || review.Id;
+          const name = review.name || review.Name;
+          const post = review.post || review.Post || "Student Verified";
+          const desc = review.description || review.Description || review.text;
+
+          return (
+            <div className="testimonial-card" key={id}>
+              <p className="review-text">"{desc}"</p>
+              
+              <div className="card-user-info">
+                <div className="user-details">
+                  <h4>{name}</h4>
+                  <p style={{ margin: "2px 0 0 0", fontSize: "12px", color: "#00458b", fontWeight: "700" }}>{post}</p>
+                  <div className="stars" style={{ marginTop: "4px", color: "#ffb703" }}>
+                    ⭐⭐⭐⭐⭐
+                  </div>
+                </div>
+                <div className="google-icon-brand">
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_G_Logo.svg" 
+                    alt="Google Review Source Connection" 
+                  />
                 </div>
               </div>
-              <div className="google-icon-brand">
-              <img 
-  src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_G_Logo.svg" 
-  alt="Google Review" 
-/>
-              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
     </section>

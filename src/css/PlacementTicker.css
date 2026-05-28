@@ -1,124 +1,175 @@
-  /* src/css/PlacementTicker.css */
+/* src/css/PlacementTicker.css */
 
+.placement-container {
+  background: #f8fafc; /* Aapke page ka background layout */
+  padding: 50px 0; /* Vertical breathing space thodi aur badhai */
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  width: 100%;
+}
+
+.placement-title-box {
+  padding: 0 45px;
+  background: #f8fafc;
+  z-index: 10;
+  box-shadow: 20px 0 30px #f8fafc;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.corporate-badge {
+  display: inline-block;
+  font-size: 10px;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  width: max-content;
+  text-transform: uppercase;
+}
+
+.placement-title-box h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.placement-title-box h4 span {
+  color: #00458b;
+  display: block;
+}
+
+.placement-title-box p {
+  margin: 2px 0 0 0;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* MARQUEE MASTER WRAPPER */
+.marquee-wrapper {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #f8fafc, rgba(248, 250, 252, 0));
+}
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #f8fafc, rgba(248, 250, 252, 0));
+}
+
+/* TRACKS */
+.marquee-track {
+  display: flex;
+  gap: 80px; /* Badi size ke logos ke liye gap thoda aur clear kiya */
+  width: max-content;
+  align-items: center;
+  animation: infiniteScrollPremium 25s linear infinite; /* Speed halki si fast ki taaki maza aaye */
+}
+
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes infiniteScrollPremium {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); } 
+}
+
+.static-track-centered {
+  display: flex;
+  gap: 60px;
+  padding-left: 45px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+/* =======================================================
+   🔥 RAW LOGO ITEM UPDATED (Dabba Free, Blend Mode Added)
+   ======================================================= */
+.logo-raw-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-raw-item img {
+  height: 56px; /* 🚀 SIZE INCREASED: Logos ko thoda aur bada kar diya hai! */
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  
+  /* ✨ THE MAGIC LINE: Ye image ke piche ke faltu white patch/dabbe ko gayab kar degi */
+  mix-blend-mode: multiply; 
+  
+  /* Sleek grayscale corporate premium standard formatting */
+  filter: grayscale(100%) opacity(55%); 
+  transition: all 0.3s ease;
+}
+
+/* Hover Action: Zoom pop aur original color blend activation */
+.logo-raw-item:hover {
+  transform: scale(1.12); /* Thoda bada zoom pop */
+}
+
+.logo-raw-item:hover img {
+  filter: grayscale(0%) opacity(100%); /* Original colors instant dynamic glow */
+}
+
+/* RESPONSIVE RESPONSIVENESS MATRIX */
+@media (max-width: 992px) {
   .placement-container {
-    background: #ffffff;
-    padding: 40px 0;
-    border-top: 1px solid #f1f5f9;
-    border-bottom: 1px solid #f1f5f9;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    font-family: 'Segoe UI', sans-serif;
-    width: 100%;
+    flex-direction: column;
+    gap: 35px;
+    text-align: center;
+    padding: 35px 15px;
   }
-
   .placement-title-box {
-    padding: 0 40px;
-    background: #ffffff;
-    z-index: 10;
-    box-shadow: 10px 0 20px #ffffff;
-    min-width: 220px;
-  }
-
-  .placement-title-box h4 {
-    margin: 0;
-    font-size: 13px;
-    font-weight: 800;
-    color: #0f172a;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    line-height: 1.3;
-  }
-
-  .placement-title-box p {
-    margin: 4px 0 0 0;
-    font-size: 11px;
-    color: #00458b;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-
-  /* Marquee Track Master */
-  .marquee-wrapper {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-  }
-
-  /* Fade effects on edge lines */
-  .marquee-wrapper::before,
-  .marquee-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 80px;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .marquee-wrapper::before {
-    left: 0;
-    background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0));
-  }
-  .marquee-wrapper::after {
-    right: 0;
-    background: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0));
-  }
-
-  .marquee-track {
-    display: flex;
-    gap: 60px;
-    width: max-content;
-    animation: infiniteScroll 25s linear infinite;
-  }
-
-  /* Pause scroll when admin hovers to check */
-  .marquee-wrapper:hover .marquee-track {
-    animation-play-state: paused;
-  }
-
-  @keyframes infiniteScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  .logo-card {
-    height: 42px;
-    display: flex;
+    padding: 0;
+    box-shadow: none;
+    min-width: auto;
     align-items: center;
+  }
+  .placement-title-box h4 span {
+    display: inline;
+    margin-left: 5px;
+  }
+  .static-track-centered {
     justify-content: center;
-    transition: all 0.3s ease;
+    padding-left: 0;
   }
-
-  .logo-card img {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-    filter: grayscale(100%) opacity(60%);
-    transition: all 0.3s ease;
+  .marquee-wrapper::before, .marquee-wrapper::after { width: 50px; }
+  .logo-raw-item img {
+    height: 42px; /* Mobile devices layout scale adjustment */
   }
-
-  /* Modern Hover Action: Asli corporate color bounce hoga */
-  .logo-card:hover img {
-    filter: grayscale(0%) opacity(100%);
-    transform: scale(1.08);
-  }
-
-  /* --- RESPONSIVE ADJUSTMENTS --- */
-  @media (max-width: 992px) {
-    .placement-container {
-      flex-direction: column;
-      gap: 25px;
-      text-align: center;
-      padding: 30px 0;
-    }
-    .placement-title-box {
-      padding: 0;
-      box-shadow: none;
-      min-width: auto;
-    }
-    .placement-title-box h4 { font-size: 14px; }
-    .marquee-wrapper::before, .marquee-wrapper::after { width: 40px; }
-    .marquee-track { gap: 40px; }
-  }
+}

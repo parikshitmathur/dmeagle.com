@@ -1,18 +1,22 @@
-// src/admin-penal/components/AdminSidebar.js
 import React from 'react';
-import './AdminSidebar.css'; // Sahi local path
+import './AdminSidebar.css'; 
 
 function AdminSidebar({ activeTab, setActiveTab }) {
-  // Yahan aapke saare tabs hain aur 'testimonials' ko sahi jagah par add kar diya hai
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard Overview', icon: '📊' },
     { id: 'slider', label: 'Hero Slider Engine', icon: '🚀' },
     { id: 'placement', label: 'Placement Partners', icon: '🏢' }, 
-    { id: 'testimonials', label: 'Manage Testimonials', icon: '⭐' }, // 👈 Yeh raha aapka Testimonials tab option!
+    { id: 'testimonials', label: 'Manage Testimonials', icon: '⭐' }, 
     { id: 'courses', label: 'Course Management', icon: '🎓' },
     { id: 'leads', label: 'Enquiry Leads', icon: '📩' },
     { id: 'settings', label: 'Portal Settings', icon: '⚙️' },
   ];
+
+  const handleTabChange = (id) => {
+    setActiveTab(id);
+    // 🚀 URL CHANGE LOGIC: Ye line URL badal degi (e.g., http://localhost:3000/#placement)
+    window.location.hash = id;
+  };
 
   return (
     <aside className="admin-sidebar">
@@ -26,7 +30,8 @@ function AdminSidebar({ activeTab, setActiveTab }) {
           <li key={item.id}>
             <div
               className={`menu-item ${activeTab === item.id ? 'active' : ''}`}
-              onClick={() => setActiveTab(item.id)}
+              onClick={() => handleTabChange(item.id)}
+              style={{ cursor: 'pointer' }}
             >
               <span style={{ fontSize: '18px', marginRight: '10px' }}>{item.icon}</span>
               <span>{item.label}</span>
